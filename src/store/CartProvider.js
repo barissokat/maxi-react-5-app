@@ -15,10 +15,7 @@ const cartReducer = (state, action) => {
     let updatedItems
 
     if (existingCartItem) {
-      const updatedItem = {
-        ...existingCartItem,
-        amount: existingCartItem.amount + action.item.amount
-      }
+      const updatedItem = { ...existingCartItem, amount: existingCartItem.amount + action.item.amount }
       updatedItems = [...state.items]
       updatedItems[existingCartItemIndex] = updatedItem
     } else {
@@ -56,7 +53,7 @@ const CartProvider = props => {
   const [cartState, dispatchCartAction] = useReducer(cartReducer, defaultCartState)
 
   const addItemToCartHandler = item => {
-    dispatchCartAction({ type: 'ADD', items: item })
+    dispatchCartAction({ type: 'ADD', item: item })
   }
 
   const removeItemFromCartHandler = id => {
